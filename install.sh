@@ -9,6 +9,10 @@ cp "$SCRIPT_DIR/claude_docker.sh" "$INSTALL_DIR/claude_docker"
 chmod +x "$INSTALL_DIR/claude_docker"
 echo "Installed claude_docker -> $INSTALL_DIR/claude_docker"
 
+cp "$SCRIPT_DIR/claude_permissionless.sh" "$INSTALL_DIR/claude_permissionless"
+chmod +x "$INSTALL_DIR/claude_permissionless"
+echo "Installed claude_permissionless -> $INSTALL_DIR/claude_permissionless"
+
 # Add to PATH if not already present
 if ! echo "$PATH" | grep -q "$INSTALL_DIR"; then
     SHELL_RC="$HOME/.zshrc"

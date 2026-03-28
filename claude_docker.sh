@@ -4,18 +4,17 @@
 
 case "$1" in
   launch)
-    # Note: run this after building claude-container/Dockerfile
     # This will prompt you to verify your account on platform.claude.com
     docker run -it --rm \
       -v "$(pwd)":/workspace \
       -w /workspace \
-      claude-container \
+      ghcr.io/9oelm/claude-container \
       /bin/zsh
     ;;
 
   join)
     # Join an existing running container based on claude-container image
-    CONTAINER_ID=$(docker ps -q -f ancestor=claude-container)
+    CONTAINER_ID=$(docker ps -q -f ancestor=ghcr.io/9oelm/claude-container)
     if [ -z "$CONTAINER_ID" ]; then
       echo "No running container found for claude-container image."
       exit 1
