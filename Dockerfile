@@ -120,9 +120,9 @@ RUN echo 'source ~/.zshrc.custom' >> /home/vscode/.zshrc
 # Copy post_install script
 COPY --chown=vscode:vscode post_install.py /opt/post_install.py
 
-# Install claude.sh as a system-wide command
-COPY --chown=vscode:vscode claude.sh /home/vscode/.local/bin/claude.sh
-RUN chmod +x /home/vscode/.local/bin/claude.sh
+# Install claude_permissionless.sh as a system-wide command
+COPY --chown=vscode:vscode claude_permissionless.sh /home/vscode/.local/bin/claude_permissionless.sh
+RUN chmod +x /home/vscode/.local/bin/claude_permissionless.sh
 
 # install RTK
 RUN curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sh
