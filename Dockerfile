@@ -34,6 +34,19 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   ipset \
   iptables \
   iproute2 \
+  # Chromium and dependencies for browser debugging
+  chromium-browser \
+  fonts-liberation \
+  libatk-bridge2.0-0 \
+  libatk1.0-0 \
+  libcups2 \
+  libdrm2 \
+  libgbm1 \
+  libnss3 \
+  libxcomposite1 \
+  libxdamage1 \
+  libxrandr2 \
+  xdg-utils \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install git-delta
