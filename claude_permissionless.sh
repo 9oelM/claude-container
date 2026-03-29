@@ -1,3 +1,3 @@
 #!/bin/zsh
 
-claude --resume --permission-mode bypassPermissions --chrome
+claude --resume --permission-mode bypassPermissions

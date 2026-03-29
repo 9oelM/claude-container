@@ -34,19 +34,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   ipset \
   iptables \
   iproute2 \
-  # Chromium and dependencies for browser debugging
-  chromium-browser \
-  fonts-liberation \
-  libatk-bridge2.0-0 \
-  libatk1.0-0 \
-  libcups2 \
-  libdrm2 \
-  libgbm1 \
-  libnss3 \
-  libxcomposite1 \
-  libxdamage1 \
-  libxrandr2 \
-  xdg-utils \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install git-delta
@@ -117,6 +104,15 @@ RUN curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir "$FNM_D
   fnm install ${NODE_VERSION} && \
   fnm default ${NODE_VERSION}
 ENV PATH="$FNM_DIR/aliases/default/bin:$FNM_DIR:$PATH"
+
+# Install Chromium for Playwright
+USER root
+RUN npx playwright install --with-deps chromium
+USER vscode
+
+# Install Playwright CLI and Claude skills
+RUN npm install -g @playwright/cli@latest && \
+  playwright-cli install --skills
 
 # Install Oh My Zsh
 ARG ZSH_IN_DOCKER_VERSION=1.2.1
