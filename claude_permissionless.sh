@@ -1,3 +1,3 @@
 #!/bin/zsh
 
-claude --permission-mode bypassPermissions
+claude --resume --permission-mode bypassPermissions

@@ -25,10 +25,15 @@ done
 
 case "$ACTION" in
   launch)
+    # Persist Claude session data (~/.claude) across container restarts
+    CLAUDE_DATA_DIR="${HOME}/.claude-container-data"
+    mkdir -p "$CLAUDE_DATA_DIR"
+
     # This will prompt you to verify your account on platform.claude.com
     docker run -it --rm \
       "${PORT_ARGS[@]}" \
       -v "$(pwd)":/workspace \
+      -v "$CLAUDE_DATA_DIR":/home/vscode/.claude \
       -w /workspace \
       ghcr.io/9oelm/claude-container \
       /bin/zsh
