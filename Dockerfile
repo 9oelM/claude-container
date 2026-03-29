@@ -86,8 +86,9 @@ RUN curl -fsSL https://claude.ai/install.sh | bash && \
   claude plugin marketplace add Q00/ouroboros && \
   claude plugin install ouroboros@ouroboros && \
   claude plugin marketplace add affaan-m/everything-claude-code && \
-  claude plugin install everything-claude-code@everything-claude-code
-
+  claude plugin install everything-claude-code@everything-claude-code && \
+  claude plugin marketplace add sveltejs/ai-tools && \
+  claude plugin install svelte@ai-tools
   
 # Install Python 3.14 via uv (fast binary download, not source compilation)
 RUN uv python install 3.14 --default
@@ -113,7 +114,6 @@ USER vscode
 # Install Playwright CLI and Claude skills
 RUN npm install -g @playwright/cli@latest && \
   playwright-cli install --skills
-
 # Install Oh My Zsh
 ARG ZSH_IN_DOCKER_VERSION=1.2.1
 RUN sh -c "$(curl -fsSL https://github.com/deluan/zsh-in-docker/releases/download/v${ZSH_IN_DOCKER_VERSION}/zsh-in-docker.sh)" -- \
