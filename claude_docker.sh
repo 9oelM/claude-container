@@ -26,7 +26,7 @@ done
 case "$ACTION" in
   launch)
     # Persist Claude session data (~/.claude) across container restarts
-    CLAUDE_DATA_DIR="${HOME}/.claude-container-data"
+    CLAUDE_DATA_DIR=".claude-container-data"
     mkdir -p "$CLAUDE_DATA_DIR"
 
     # Always pull latest image
