@@ -88,7 +88,7 @@ RUN curl -fsSL https://claude.ai/install.sh | bash && \
   claude plugin marketplace add affaan-m/everything-claude-code && \
   claude plugin install everything-claude-code@everything-claude-code && \
   claude plugin marketplace add sveltejs/ai-tools && \
-  claude plugin install svelte@ai-tools
+  claude plugin install svelte
   
 # Install Python 3.14 via uv (fast binary download, not source compilation)
 RUN uv python install 3.14 --default
