@@ -29,6 +29,9 @@ case "$ACTION" in
     CLAUDE_DATA_DIR="${HOME}/.claude-container-data"
     mkdir -p "$CLAUDE_DATA_DIR"
 
+    # Always pull latest image
+    docker pull ghcr.io/9oelm/claude-container
+
     # This will prompt you to verify your account on platform.claude.com
     docker run -it --rm \
       "${PORT_ARGS[@]}" \
