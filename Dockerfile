@@ -149,3 +149,16 @@ RUN ./install.sh typescript python golang   # or python or golang or swift or ph
 # ./install.sh typescript python golang swift php
 # ./install.sh --target cursor typescript
 # ./install.sh --target antigravity typescript
+
+WORKDIR /workspace
+
+# Back up baked-in .claude (skills, plugins, config) so the entrypoint can
+# restore them into the host-mounted .claude without overwriting session data
+RUN cp -r /home/vscode/.claude /home/vscode/.claude-baked
+
+# Entrypoint: copies baked skills into mounted .claude on every container start
+COPY --chown=vscode:vscode entrypoint.sh /home/vscode/.local/bin/entrypoint.sh
+RUN chmod +x /home/vscode/.local/bin/entrypoint.sh
+
+ENTRYPOINT ["/home/vscode/.local/bin/entrypoint.sh"]
+CMD ["/bin/zsh"]
