@@ -150,6 +150,9 @@ RUN ./install.sh typescript python golang   # or python or golang or swift or ph
 # ./install.sh --target cursor typescript
 # ./install.sh --target antigravity typescript
 
+# caveman
+RUN curl -fsSL https://raw.githubusercontent.com/JuliusBrussee/caveman/main/install.sh | bash
+
 WORKDIR /workspace
 
 # Back up baked-in .claude (skills, plugins, config) so the entrypoint can

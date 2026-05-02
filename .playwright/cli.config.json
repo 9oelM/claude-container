@@ -1,0 +1,9 @@
+{
+  "browser": {
+    "browserName": "chromium",
+    "launchOptions": {
+      "executablePath": "/home/vscode/.cache/ms-playwright/chromium-1212/chrome-linux/chrome",
+      "chromiumSandbox": false
+    }
+  }
+}
