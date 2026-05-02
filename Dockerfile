@@ -34,6 +34,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   ipset \
   iptables \
   iproute2 \
+  # for gimem
+  libssl-dev \
+  pkg-config \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install git-delta
@@ -68,6 +71,13 @@ ENV SHELL=/bin/zsh
 ENV EDITOR=nano
 ENV VISUAL=nano
 
+# Install cargo
+RUN curl https://sh.rustup.rs -sSf | sh
+
+# Install gimem (memory store for Claude Code)
+RUN cargo install --git https://github.com/9oelM/gimem --branch main memory-store --bin gimem
+ENV PATH="/home/vscode/.cargo/bin:$PATH"
+
 WORKDIR /workspace
 
 # Switch to non-root user for remaining setup
@@ -88,8 +98,10 @@ RUN curl -fsSL https://claude.ai/install.sh | bash && \
   claude plugin marketplace add affaan-m/everything-claude-code && \
   claude plugin install everything-claude-code@everything-claude-code && \
   claude plugin marketplace add sveltejs/ai-tools && \
-  claude plugin install svelte
-  
+  claude plugin install svelte && \
+  claude plugin marketplace add 9oelM/gimem && \
+  claude plugin install gimem@gimem
+
 # Install Python 3.14 via uv (fast binary download, not source compilation)
 RUN uv python install 3.14 --default
 
