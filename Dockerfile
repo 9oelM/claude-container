@@ -71,8 +71,8 @@ ENV SHELL=/bin/zsh
 ENV EDITOR=nano
 ENV VISUAL=nano
 
-# Install cargo
-RUN curl https://sh.rustup.rs -sSf | sh
+# Install cargo (non interactive yes)
+RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
 
 # Install gimem (memory store for Claude Code)
 RUN cargo install --git https://github.com/9oelM/gimem --branch main memory-store --bin gimem
